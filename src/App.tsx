@@ -1,12 +1,12 @@
 import React from 'react';
-
 import './App.css';
-import Login from './components/loginPage/Login';
+import Navbar from './Components/Header/Navbar';
+import Login from './Components/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <h1>HI</h1>
+      <Navbar/>
       <Login/>
     </div>
   );
