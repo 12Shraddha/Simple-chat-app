@@ -1,12 +1,10 @@
 import React from 'react'
 import "./Form.css";
-// import { LoginAction, fetchUserRequest } from "../../Actions/LoginAction";
-//import { loginAction } from "../../Actions/LoginAction";
 import { useDispatch } from 'react-redux';
 import {BsFillHeartFill} from "react-icons/bs"
-//import { useNavigate }  from "react-router-dom";
 import { userDetail} from '../../Core/ActionTypes/TrialActionsTypes';
-import {getAction} from "../../Core/ActionCreator/TrialActionCreator"
+import { getUserRequest } from '../../Core/ActionCreator/LoginActionCreator';
+
 
 interface props{
   formInput:any;
@@ -24,11 +22,12 @@ interface props{
     password:formPassword,
     }
 
+
   return (
     <div>
       <form className='form-inline' onSubmit={(e: React.FormEvent) => {
-        console.log("Form page",data);
-       dipatch(getAction(data.id,data.password));
+        //console.log("Form page",data);
+       dipatch(getUserRequest(data.id,data.password));
         e.preventDefault();
     
       }}>
@@ -39,8 +38,12 @@ interface props{
             <label className='password_'>Password</label>
             <input className='input_box password_' type="password" placeholder='Password'onChange={onchange2} value={formPassword} />
             <button  className="btn-primary" type="submit">Submit</button>
-        </form>
+      </form>
+
     </div>
-  )
+
+    )
+
 }
+
 export default Form
