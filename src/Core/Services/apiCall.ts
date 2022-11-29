@@ -12,6 +12,6 @@ export async function fetchApi(
     
 ): Promise<Response> {
 console.log('Axiossssss',axios.get(`http://localhost:3500/userInfo`));
-  return await axios.get(`http://localhost:3500/userInfo/${id}/${password}`);
+  return await axios.get(`http://localhost:3500/userInfo`);
 }
 
