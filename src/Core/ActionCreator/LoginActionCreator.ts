@@ -6,6 +6,7 @@ export function getUserRequest(id: string, password: any): actions.GetUserReques
     type: actions.GET_USER_REQUEST,
     id,
     password,
+ 
   };
 }
 
@@ -14,12 +15,11 @@ export function getUserSuccess(id: string, password: any): actions.GetUserSucces
     type: actions.GET_USER_SUCCESS,
     id,
     password,
-    error: "Valid Input",
   };
 }
 
 export function getUserFailure(
-  error: Error | string
+  error: null | string
 ): actions.GetUserFailure {
   return {
     type: actions.GET_USER_FAILURE,

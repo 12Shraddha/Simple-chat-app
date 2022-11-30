@@ -4,7 +4,7 @@ import { fetchApi } from "../Services/apiCall";
 import * as actionCreators from "../ActionCreator/LoginActionCreator";
 import * as actionTypes from "../ActionTypes/LoginActionTypes";
 
-function* onLoadLyrics({ id, password }: actionTypes.GetUserRequest) {
+function* onLoad({ id, password }: actionTypes.GetUserRequest) {
     
       const user_info: actionTypes.userDetail = {
         id: id,
@@ -12,7 +12,8 @@ function* onLoadLyrics({ id, password }: actionTypes.GetUserRequest) {
     };
     
   try {
-      const { data } = yield call(fetchApi, id, password);
+    const { data } = yield call(fetchApi, id, password);
+    console.log("DATAAAAAAAAAAA saga",data)
           const found = data.find((obj: any) => {
             return (
               obj.id === user_info.id && obj.password === user_info.password
@@ -20,18 +21,20 @@ function* onLoadLyrics({ id, password }: actionTypes.GetUserRequest) {
           });
           console.log("FOUND_inlogin:", found);
 
-          if (found) {
-              yield put(actionCreators.getUserSuccess(id, password));
-
-      }
+          if (found !== undefined) {
+            yield put(actionCreators.getUserSuccess(id, password));
+          } else {
+            yield put(actionCreators.getUserFailure("Error recieved"));
+          }
     
-  } catch (error:any) {
-    yield put(actionCreators.getUserFailure(error.response.data.error));
+  } catch (error: any) {
+    console.log("Error recieved",error)
+    yield put(actionCreators.getUserFailure("Error recieved"));
   }
 }
 
 function* watchOnLoad() {
-  yield takeEvery(actionTypes.GET_USER_REQUEST, onLoadLyrics);
+  yield takeEvery(actionTypes.GET_USER_REQUEST, onLoad);
 }
 
 export default function* LoginSaga() {
