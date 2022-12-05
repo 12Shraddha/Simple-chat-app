@@ -22,15 +22,16 @@ export default function LoginReducer(
 ): LoginState {
   switch (action.type) {
     case actions.GET_USER_SUCCESS:
-      console.log("login_succefull...",state);
+      console.log("login_succefull...", state);
       return {
         ...state,
         id: action.id,
         password: action.password,
-        isLoading:false
+        isLoading: false,
+        error:null
       };
     case actions.GET_USER_FAILURE:
-      console.log("login_Fail...",state);
+      console.log("login_Fail...", state);
       return {
         ...state,
         isLoading: false,
@@ -38,11 +39,13 @@ export default function LoginReducer(
       };
 
     case actions.GET_USER_REQUEST:
-      console.log("login_Request...",state);
+      console.log("login_Request...", state);
       return {
         ...state,
         isLoading: true,
+        error: null
       };
+    
     default:
       return state;
   }

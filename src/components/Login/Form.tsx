@@ -12,7 +12,7 @@ interface props{
   setFormPassword:React.Dispatch<React.SetStateAction<string>>;
 }
   const Form:React.FC<props> = ({formInput,setFormInput,formPassword,setFormPassword}) => {
-  const onchange1=(e:React.ChangeEvent<HTMLInputElement>)=>( setFormInput(e.target.value));
+    const onchange1 = (e: React.ChangeEvent<HTMLInputElement>) => (setFormInput(e.target.value));
   const onchange2=(e:React.ChangeEvent<HTMLInputElement>)=>( setFormPassword(e.target.value));
  
   const dipatch=useDispatch();
@@ -21,13 +21,14 @@ interface props{
     password:formPassword,
     }
 
-
+ const error_status = useSelector((state: any) => state.login.error);
   return (
     <div>
       <form
         className="form-inline"
         onSubmit={(e: React.FormEvent) => {
           //console.log("Form page",data);
+          
           dipatch(getUserRequest(data.id, data.password));
           e.preventDefault();
           setFormInput("")
@@ -45,6 +46,7 @@ interface props{
           placeholder="UserName"
           value={formInput}
           required
+          
     
         />
 
@@ -60,7 +62,7 @@ interface props{
         <button className="btn-primary" type="submit">
           Submit
         </button>
-      </form>
+      </form >
     </div>
   );
 

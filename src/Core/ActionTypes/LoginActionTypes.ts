@@ -30,5 +30,6 @@ export interface GetUserFailure {
   error: string | null;
 }
 
+
 export type LoginActions = GetUserFailure|GetUserRequest|GetUserSuccess
   
